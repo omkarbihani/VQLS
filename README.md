@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Implementation of VQLS
 
 ## Theory Overview
