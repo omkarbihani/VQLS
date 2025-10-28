@@ -46,6 +46,7 @@ We can write $|0_j\rangle \langle 0_j | = \frac{Z_j + \mathbb{1}_{j}}{2}$. After
 $$C_{L} = \frac{1}{2} - \frac{1}{2n} \sum_{j} \langle \psi | A^{\dagger} B \left( Z_{j} \otimes \mathbb{1}_{\bar{j}} \right) B^{\dagger} A | \psi \rangle$$
 
 $$\langle \psi | A^{\dagger} B \left( Z_{j} \otimes \mathbb{1}_{\bar{j}} \right) B^{\dagger} A | \psi \rangle = \sum_{l,m} c_m^{*} c_l \delta_{lm}^{(j)} $$
+
 Where:
 - $\delta_{lm}^{(j)} = \langle \psi | A_m^{\dagger} B \left( Z_{j} \otimes \mathbb{1}_{\bar{j}} \right) B^{\dagger} A_l | \psi \rangle$
 
