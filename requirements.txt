@@ -1,0 +1,6 @@
+# python version > 3.12
+
+numpy
+qiski
+qiskit_aer
+scipy
