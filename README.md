@@ -73,11 +73,3 @@ Where:
 
 **Bravo-Prieto, C., LaRose, R., Cerezo, M., Subasi, Y., Cincio, L., & Coles, P. J. (2023).** *Variational Quantum Linear Solver*. *Quantum*, 7, 1188. [https://doi.org/10.22331/q-2023-11-22-1188](https://doi.org/10.22331/q-2023-11-22-1188)
 
-=======
-This is an initial implementation of VQLS from https://arxiv.org/abs/1909.05820. Necessary functions are defined in qc_utils.py and ansatz.py
-
-vqls_0.ipynb uses the Estimator class, in which we need not to define hadamard test for calculation of expectation value of an operator. 
-It only has evaluation of global cost hamiltonian.
-
-vqls_1.ipynb uses hadamard test. Also it contains global and local cost hamiltonian.
->>>>>>> e60272255af89812799f7baab47f04aed84e974f
