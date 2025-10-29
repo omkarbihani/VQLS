@@ -55,7 +55,7 @@ def fixed_ansatz(n: int, d: int, params: list) -> QuantumCircuit:
     """
     assert isinstance(n, int) and isinstance(d, int), "n and d must be integers"
     assert isinstance(params, (list, np.ndarray)), "params must be a list or numpy array"
-    assert len(params) == n * d, "params must have length 2 * n * d"
+    assert len(params) == n * d, "params must have length n * d"
     
     qc = QuantumCircuit(n)
     
