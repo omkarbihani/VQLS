@@ -241,14 +241,13 @@ class EstimatorVQLSGlobal(EstimatorVQLS):
         backend = None,
     ):
         super().__init__(A=A, b=b, d=d, params0=params0, ansatz_function=ansatz_function, B=B,  A_LCU=A_LCU, B_LCU=B_LCU, backend=backend)
-    
+        self._A_dagger_A = SparsePauliOp(self.A_LCU.adjoint()@self.A_LCU)
 
     def calculate_psi_norm(self, q_circuit: QuantumCircuit):
         """
         Compute <psi|psi> = <0|V^{dagger} A^{dagger} A V|0>.
         """
-        op = self.A_LCU.adjoint() @ self.A_LCU
-        return self._expectation(q_circuit, op)
+        return self._expectation(q_circuit, self._A_dagger_A)
 
     def calculate_inner_product_b_psi(self, q_circuit: QuantumCircuit):
         """
@@ -282,8 +281,7 @@ class EstimatorVQLSGlobal(EstimatorVQLS):
         self.print_info(cost)
         self.cost_history.append(cost)
         return cost
-
-        
+          
 class EstimatorVQLSLocal(EstimatorVQLS):
 
     def __init__(
@@ -299,14 +297,14 @@ class EstimatorVQLSLocal(EstimatorVQLS):
         backend = None
     ):
         super().__init__(A=A, b=b, d=d, params0=params0, ansatz_function=ansatz_function, B=B,  A_LCU=A_LCU, B_LCU=B_LCU, backend=backend)
+        self._A_dagger_A = SparsePauliOp(self.A_LCU.adjoint()@self.A_LCU)
 
 
     def calculate_psi_norm(self, q_circuit: QuantumCircuit):
         """
         Compute <psi|psi> = <0|V^{dagger} A^{dagger} A V|0>.
         """
-        op = self.A_LCU.adjoint() @ self.A_LCU
-        return self._expectation(q_circuit, op)
+        return self._expectation(q_circuit, self._A_dagger_A)
 
     def calculate_delta_j(self, j, q_circuit: QuantumCircuit):
         """ 
@@ -316,7 +314,6 @@ class EstimatorVQLSLocal(EstimatorVQLS):
         sp = ''.join('Z' if i == j else 'I' for i in range(self.n_qubits))
         j_term = SparsePauliOp(sp)
         op = self.A_LCU.adjoint() @ self.B_LCU @ j_term @ self.B_LCU.adjoint() @ self.A_LCU
-        # print(op)
         value = self._expectation(q_circuit, op)
         return value
 
@@ -375,7 +372,6 @@ class SamplerVQLS(BaseVQLS):
         """
         Compute expectation value <0| U0^{dagger} Os U0 |0>.
         """
-        self.print_debug()
         # Compute overall operator product
         composite_op = SparsePauliOp.from_operator(operators[0])
         for op in operators[1:]:
@@ -599,7 +595,6 @@ class SamplerVQLSLocal(SamplerVQLS):
         C_L = 0.5 - (0.5 * sum_{j} <psi| A^{dagger} B (Z_j otimes I_{bar{j}}) B^{dagger} A |psi>) / (n * <psi|psi>)
         """
         
-        self.print_debug()
         qc = self.ansatz_function(self.n_qubits, self.d, params)
         denom = self.calculate_psi_norm(qc_ansatz=qc)
         
