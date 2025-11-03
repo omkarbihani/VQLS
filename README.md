@@ -59,7 +59,7 @@ Where:
     - We use parameterized quantum circuits to represent the variational ansatz. The ansatz is built using either the `HE_ansatz` or `fixed_ansatz` functions that define rotation and entangling layers for the quantum circuit.
 
 2. **qc_utils.py**:
-    - Contains fucnctions for creating gates and their controlled version.  **Linear Combination of Unitaries (LCU)** representation using `get_LCU` function.
+    - Contains functions for creating gates and their controlled version.  **Linear Combination of Unitaries (LCU)** representation using `get_LCU` function.
     - Has classes defined for Hadamard test.
 
 3. **vqls.py**:
