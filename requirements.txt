@@ -4,3 +4,5 @@ numpy
 qiskit
 qiskit_aer
 scipy
+matplotlib
+ipykernel
